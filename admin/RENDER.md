@@ -24,3 +24,11 @@ Under the "Advanced" options, set the following environment variable (specifying
 ```sh
 ALPHAVANTAGE_API_KEY="________"
 ```
+
+Finally, click to "Create" the web service.
+
+## Render Deploys
+
+Whenever you push new code to the desingated branch in your GitHub repository, it will trigger a new deployment to update your hosted site.
+
+You can also trigger builds manually.

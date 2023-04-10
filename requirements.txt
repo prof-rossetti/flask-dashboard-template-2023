@@ -12,5 +12,5 @@ Flask
 pytest
 beautifulsoup4
 
-# for deployment:
+# for production server:
 gunicorn
