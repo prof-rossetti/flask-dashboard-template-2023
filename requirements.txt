@@ -10,3 +10,4 @@ Flask
 
 # for testing:
 pytest
+beautifulsoup4

@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 ### AlphaVantage API Key
 
-Obtain and AlphaVantage API Key and set it as the `ALPHAVANTAGE_API_KEY` environment variable (see configuration section below).
+Obtain a "premium" access [AlphaVantage API Key](https://www.alphavantage.co/support/#api-key) and set it as the `ALPHAVANTAGE_API_KEY` environment variable (see configuration section below).
 
 
 ## Configuration

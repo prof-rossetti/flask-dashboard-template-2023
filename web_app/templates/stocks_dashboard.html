@@ -5,7 +5,7 @@
     <h2>Stocks Dashboard</h2>
 
     <div>
-        <p>Selected Stock: {{ symbol }}</p>
+        <p>Selected Stock: <span id="display-symbol">{{ symbol }}</span></p>
         <p>Latest (Adjusted) Closing Price: <span id="display-latest-closing-price">__________</span></p>
     </div>
 
@@ -15,13 +15,11 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript">
 
-        // display elements:
-        var displayLatestClose = document.getElementById("display-latest-closing-price")
-
-        // processing the specific JSON response data returned by the router:
+        // processing the symbol variable returned by the router:
         var symbol = '{{symbol}}'
         console.log(symbol)
 
+        // processing the specific JSON response data returned by the router:
         var responseData = JSON.parse('{{data | tojson}}')
         console.log(responseData)
 
@@ -42,6 +40,7 @@
         console.log("LATEST CLOSE:", latestCloseUSD)
 
         // updating the contents of the page:
+        var displayLatestClose = document.getElementById("display-latest-closing-price")
         displayLatestClose.innerText = latestCloseUSD
 
         // charting the data (see https://plotly.com/javascript/line-charts/):
