@@ -85,3 +85,7 @@ Running tests, as configured by the "conftest.py" file and defined in the "test"
 ```sh
 pytest
 ```
+
+## [Continuous Integration](/admin/ACTIONS.md)
+
+## [Deploying](/admin/RENDER.md)
