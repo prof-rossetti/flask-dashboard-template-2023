@@ -1,4 +1,4 @@
-# flask-dashboard-template
+# flask-dashboard-template-2023
 
 This is an example full stack web application built in Python with the [Flask](https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/flask.md) framework. This application displays an interactive data dashboard of stock prices over time.
 
@@ -15,7 +15,7 @@ Make a copy of the template repository from GitHub. Clone your copy of the repo 
 Navigate to the local repository from the command line, for example:
 
 ```sh
-cd ~/Desktop/flask-dashboard-template
+cd ~/Desktop/flask-dashboard-template-2023
 ```
 
 > NOTE: it is important to navigate to the root directory before running any of the commands below.
@@ -41,6 +41,8 @@ Install package dependencies (first time only):
 pip install -r requirements.txt
 ```
 
+> NOTE: if you see an error after running this package installation command, make sure you have first navigated to the root directory of your local repository, where the "requirements.txt" file exists.
+
 ### Services
 
 You'll also need to obtain a "premium" access [AlphaVantage API Key](https://www.alphavantage.co/support/#api-key) and set it as the `ALPHAVANTAGE_API_KEY` environment variable (see configuration section below).
@@ -48,7 +50,7 @@ You'll also need to obtain a "premium" access [AlphaVantage API Key](https://www
 
 ## Configuration
 
-Create a new file called ".env" in the root directory of this local repository, and place inside contents like the following:
+Create a new file called ".env" in the root directory of your local repository, and place inside contents like the following:
 
 
 ```sh
