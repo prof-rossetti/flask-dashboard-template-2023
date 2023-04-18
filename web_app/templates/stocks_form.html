@@ -1,5 +1,5 @@
-
-{% extends "layout.html" %}
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "stocks_form" %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
         </select>
         <br>
 
-        <button id="my-submit-btn">Go!</button>
+        <button id="my-submit-btn" class="btn btn-primary mt-3">Go!</button>
     </form>
 
 {% endblock %}
