@@ -11,3 +11,6 @@ Flask
 # for testing:
 pytest
 beautifulsoup4
+
+# for the production server:
+gunicorn
