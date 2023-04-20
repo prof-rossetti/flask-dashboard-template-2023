@@ -40,7 +40,6 @@ def stocks_dashboard():
         return redirect("/stocks/form")
 
 
-
 @dashboard_routes.route("/unemployment/dashboard")
 def unemployment_dashboard():
     print("UNEMPLOYMENT DASHBOARD...")
@@ -54,6 +53,28 @@ def unemployment_dashboard():
         else:
             #flash("OOPS", "warning")
             return redirect("/")
+    except Exception as err:
+        print("ERROR", err)
+        #flash("OOPS", "warning")
+        return redirect("/")
+
+
+
+
+
+# can hit this with: "/multistock/dashboard?symbols=NFLX&symbols=GOOGL&symbols=MSFT"
+@dashboard_routes.route("/multistock/dashboard", methods=["GET"])
+def multistock_dashboard():
+    print("MULTI-STOCK DASHBOARD...")
+
+    # consider reading these symbols from a datastore, or asking for multiple inputs
+    symbols = request.args.getlist("symbols") or ["NFLX", "GOOGL", "MSFT"]
+    print(symbols)
+
+    try:
+        alpha = AlphavantageService()
+        data = alpha.fetch_multistock_daily(symbols=symbols)
+        return render_template("multistock_dashboard.html", symbols=symbols, data=data)
     except Exception as err:
         print("ERROR", err)
         #flash("OOPS", "warning")

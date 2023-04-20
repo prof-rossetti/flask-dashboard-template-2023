@@ -4,7 +4,6 @@ import os
 from dotenv import load_dotenv
 from pandas import read_csv, DataFrame
 
-
 load_dotenv()
 
 ALPHAVANTAGE_API_KEY = os.getenv("ALPHAVANTAGE_API_KEY", default="demo")
@@ -43,6 +42,16 @@ class AlphavantageService:
             return DataFrame()
         else:
             return df
+
+    def fetch_multistock_daily(self, symbols:list):
+        results = {}
+        for symbol in symbols:
+            request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={self.api_key}&datatype=csv"
+            df = read_csv(request_url)
+            results[symbol] = df.to_dict("records")
+            # TODO: consider implementing some kind of validation or re-attempt in case one or more requests goes bad
+        return results #> {"MSFT": [], "GOOGL": [], "NFLX": []}
+
 
     def fetch_unemployment(self):
         """

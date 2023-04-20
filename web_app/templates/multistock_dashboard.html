@@ -1,0 +1,46 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "stocks_dashboard" %}
+
+{% block content %}
+
+    <h2>Multistock Dashboard</h2>
+
+    <p>Selected Stocks: <span id="display-symbol">{{ symbols }}</span></p>
+
+    <div id="dataviz-container"></div>
+
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+
+        // processing the specific JSON response data returned by the router:
+        var responseData = JSON.parse('{{data | tojson}}')
+        console.log(responseData) //> {"MSFT": [], "GOOGL": [], "NFLX": []}
+
+        var symbols = Object.keys(responseData)
+        console.log(symbols)
+
+        // charting the data (see https://plotly.com/javascript/line-charts/):
+        var title = "Daily Closing Prices (Multistock)"
+        var layout = {title: title, height: 500}
+        var chartData = []
+
+        symbols.forEach(symbol => {
+            console.log(symbol)
+            var symbolData = responseData[symbol]
+
+            var dates = [] //> an array of date keys, for the chart ["2020-01-27", "2020-01-24", "2020-01-23", etc.]
+            var closingPrices = [] //> an array of price objects
+            symbolData.forEach(row => {
+                dates.push(row["timestamp"])
+                closingPrices.push(row["adjusted_close"])
+            });
+
+            chartData.push({x: dates, y: closingPrices, mode: "lines+markers", name: symbol})
+        })
+
+        Plotly.newPlot("dataviz-container", chartData, layout, {responsive: true})
+
+    </script>
+
+{% endblock %}
