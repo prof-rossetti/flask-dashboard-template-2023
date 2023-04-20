@@ -23,3 +23,23 @@ def test_fetch_stocks_daily():
     df = alpha.fetch_stocks_daily(symbol="OOPS")
     assert isinstance(df, DataFrame)
     assert df.empty
+
+
+
+def test_fetch_multistock_daily():
+    alpha = AlphavantageService()
+
+    # with valid symbol, returns the data:
+    result = alpha.fetch_multistock_daily(symbols=["IBM", "NFLX"])
+    assert isinstance(result, dict)
+    assert list(result.keys()) == ["IBM", "NFLX"]
+
+    data = result["IBM"]
+    assert isinstance(data, list)
+    assert len(data) >= 100
+    assert list(data[0].keys()) == ['timestamp', 'open', 'high', 'low', 'close', 'adjusted_close', 'volume', 'dividend_amount', 'split_coefficient']
+
+    data = result["NFLX"]
+    assert isinstance(data, list)
+    assert len(data) >= 100
+    assert list(data[0].keys()) == ['timestamp', 'open', 'high', 'low', 'close', 'adjusted_close', 'volume', 'dividend_amount', 'split_coefficient']
